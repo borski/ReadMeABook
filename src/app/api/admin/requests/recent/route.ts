@@ -33,15 +33,6 @@ export async function GET(request: NextRequest) {
             plexUsername: true,
           },
         },
-        downloadHistory: {
-          where: {
-            selected: true,
-          },
-          select: {
-            torrentUrl: true,
-          },
-          take: 1,
-        },
       },
       orderBy: {
         createdAt: 'desc',
@@ -60,7 +51,6 @@ export async function GET(request: NextRequest) {
       createdAt: request.createdAt,
       completedAt: request.completedAt,
       errorMessage: request.errorMessage,
-      torrentUrl: request.downloadHistory[0]?.torrentUrl || null,
     }));
 
     return NextResponse.json({ requests: formatted });

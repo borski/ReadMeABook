@@ -63,7 +63,7 @@ describe('Admin requests routes', () => {
     const payload = await response.json();
 
     expect(payload.requests).toHaveLength(1);
-    expect(payload.requests[0].torrentUrl).toBe('http://torrent');
+    expect(payload.requests[0]).not.toHaveProperty('torrentUrl');
   });
 
   it('returns paginated requests with default params', async () => {
@@ -446,5 +446,4 @@ describe('Admin requests routes', () => {
     expect(jobQueueMock.addDownloadJob).not.toHaveBeenCalled();
   });
 });
-
 
